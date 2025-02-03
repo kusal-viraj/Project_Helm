@@ -11,3 +11,24 @@ persistentVolumeClaim:
   accessMode: ReadWriteMany
   storage: 15Gi
   storageClass: efs-sc
+
+
+testConnection:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+deployment:
+  enabled: false
+
+service:
+  enabled: false
+
+ingress:
+  enabled: false
+
+serviceAccount:
+  enabled: false
+
+
