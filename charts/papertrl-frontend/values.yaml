@@ -1,5 +1,5 @@
 # Global configurations
-namespace: testing
+#namespace: testing
 appName: papertrl-frontend
 replicaCount: 2
 

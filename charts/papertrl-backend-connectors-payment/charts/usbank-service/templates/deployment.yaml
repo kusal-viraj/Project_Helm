@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName }}-deployment
-  namespace: {{ .Values.global.namespace }}
+  namespace: {{ .Release.Namespace }}  # Uses the namespace from `helm install`
   labels:
     app: {{ .Values.appName }}
 

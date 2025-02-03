@@ -1,5 +1,5 @@
 global:
-  namespace: testing
+  #namespace: testing
 
   image:
     tag: "2.17.3"
