@@ -1,0 +1,19 @@
+
+{{- if .Values.service.enabled }}
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "papertrl-backend-connectors-payment.fullname" . }}
+  labels:
+    {{- include "papertrl-backend-connectors-payment.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "papertrl-backend-connectors-payment.selectorLabels" . | nindent 4 }}
+{{- end }}

@@ -1,0 +1,55 @@
+global:
+  namespace: testing
+
+  image:
+    tag: "1.0.10"
+    pullPolicy: IfNotPresent
+
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
+
+  env:
+    configMap:
+      name: testing-db-config
+      keys:
+        db_host: db_host
+        db_port: db_port
+    secret:
+      name: testing-db-credential
+      keys:
+        username: username
+        password: password
+
+  volume:
+    claimName: efs-pvc
+    mountPath: /papertrl
+
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: backend-node-group
+
+  service:
+    type: "ClusterIP"
+
+
+autoscaling:
+  enabled: false
+
+deployment:
+  enabled: false
+
+service:
+  enabled: false
+
+ingress:
+  enabled: false
+
+serviceAccount:
+  enabled: false
+
+testConnection:
+  enabled: false
+
+notesEnabled: false
