@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.name }}  # Name of the service from values.yaml
+  namespace: {{ .Release.namespace }}  # Namespace from values.yaml
+spec:
+  selector:
+    app: {{ .Values.service.selector.app }}  # App selector from values.yaml
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }}  # Port to expose from values.yaml
+      targetPort: {{ .Values.service.targetPort }}  # Target port from values.yaml

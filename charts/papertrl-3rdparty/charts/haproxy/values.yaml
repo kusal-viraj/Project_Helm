@@ -1,0 +1,42 @@
+replicaCount: 2
+
+image:
+  repository: haproxy
+  tag: latest
+
+service:
+  name: papertrl-db-lb
+  namespace: testing
+  selector:
+    app: haproxy-db-proxy
+  port: 3000
+  targetPort: 3000
+
+configMap:
+  name: haproxy-configmap  # ConfigMap name for HAProxy
+
+nodeSelector: backend-node-group  # Run only on backend node group
+
+haproxy:
+  frontendPort: 3000  # Default port for frontend
+  backend:
+    rdsHost: "testing-vpc-rds-instance.cawybcg7o5p2.us-east-2.rds.amazonaws.com"  # Default RDS hostname
+    rdsPort: 3306  # Default RDS port
+  config:
+    global:
+      log: "/dev/log local0"
+      maxconn: 200
+    defaults:
+      log: "global"
+      option: "dontlognull"
+      timeout:
+        connect: "5000ms"
+        client: "50000ms"
+        server: "50000ms"
+    frontend:
+      bind: "*:3000"
+      mode: "tcp"
+      default_backend: "mysql_backend"
+    backend:
+      mode: "tcp"
+      server: "rds-server testing-vpc-rds-instance.cawybcg7o5p2.us-east-2.rds.amazonaws.com:3306 check"

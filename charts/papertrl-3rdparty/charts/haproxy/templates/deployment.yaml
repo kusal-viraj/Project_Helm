@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-haproxy-db-proxy
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Release.Name }}-haproxy-db-proxy
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-haproxy-db-proxy
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-haproxy-db-proxy
+    spec:
+      containers:
+        - name: haproxy
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          volumeMounts:
+            - name: haproxy-config
+              mountPath: /usr/local/etc/haproxy/haproxy.cfg
+              subPath: haproxy.cfg
+      volumes:
+        - name: haproxy-config
+          configMap:
+            name: {{ .Values.configMap.name }}
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: {{ .Values.nodeSelector }}

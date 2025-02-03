@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-haproxy-config  # Dynamically named based on release
+  namespace: {{ .Release.Namespace }}  # Namespace dynamically passed during install
+data:
+  haproxy.cfg: |
+
+    global
+      log {{ .Values.haproxy.config.global.log }}
+      maxconn {{ .Values.haproxy.config.global.maxconn }}
+
+    defaults
+      log {{ .Values.haproxy.config.defaults.log }}
+      option {{ .Values.haproxy.config.defaults.option }}
+      timeout connect {{ .Values.haproxy.config.defaults.timeout.connect }}
+      timeout client {{ .Values.haproxy.config.defaults.timeout.client }}
+      timeout server {{ .Values.haproxy.config.defaults.timeout.server }}
+
+    frontend mysql_frontend
+      bind {{ .Values.haproxy.config.frontend.bind }}
+      mode {{ .Values.haproxy.config.frontend.mode }}
+      default_backend {{ .Values.haproxy.config.frontend.default_backend }}
+
+    backend mysql_backend
+      mode {{ .Values.haproxy.config.backend.mode }}
+      server {{ .Values.haproxy.config.backend.server }}
+
+    backend mysql_backend
+      mode tcp
+      server rds-server {{ .Values.haproxy.backend.rdsHost }}:{{ .Values.haproxy.backend.rdsPort }} check
