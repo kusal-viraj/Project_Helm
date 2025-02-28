@@ -28,7 +28,7 @@ deployment:
     containerPort: 9010
     name: http
 
-  #  env:
+  #  env:###
   #    configMap:
   #      name: {{ .Values.global.env.configMap.name }}
   #      keys:
