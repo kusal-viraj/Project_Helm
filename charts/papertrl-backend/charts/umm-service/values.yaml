@@ -6,7 +6,7 @@ replicaCount: 2
 # Deployment-specific values
 deployment:
   image:
-    repository: 194978441177.dkr.ecr.us-east-2.amazonaws.com/umm-service
+    repository: 194978441177.dkr.ecr.ap-south-1.amazonaws.com/githubactions-user-management-service
     #tag: "2.17.3"
     #pullPolicy: IfNotPresent
 
