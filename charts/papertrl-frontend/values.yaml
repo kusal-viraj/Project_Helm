@@ -6,7 +6,8 @@ replicaCount: 2
 # Deployment-specific values
 deployment:
   image:
-    repository: 194978441177.dkr.ecr.ap-south-1.amazonaws.com/githubactions-angular-ui
+    #repository: 194978441177.dkr.ecr.ap-south-1.amazonaws.com/githubactions-angular-ui
+    repository: 194978441177.dkr.ecr.us-east-2.amazonaws.com/papertrl-frontend
     tag: 3.6.6
     pullPolicy:  Always
 
