@@ -42,7 +42,7 @@ deployment:
 
   readinessProbe:
     tcpSocket:
-      port: 6000
+      port: 5000
     initialDelaySeconds: 120
     periodSeconds: 10
 
