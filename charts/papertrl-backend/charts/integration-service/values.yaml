@@ -60,6 +60,7 @@ deployment:
 
 # Service-specific values
 service:
+  name: papertrl-integration
   #type: ClusterIP
   port:
     name: http

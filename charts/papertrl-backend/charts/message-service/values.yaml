@@ -1,6 +1,6 @@
 # Global configurations
 #namespace: testing
-appName: papertrl-msg
+appName: papertrl-message
 replicaCount: 2
 
 # Deployment-specific values
@@ -60,6 +60,7 @@ deployment:
 
 # Service-specific values
 service:
+  name: papertrl-message
   #type: ClusterIP
   port:
     name: http

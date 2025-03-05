@@ -60,6 +60,7 @@ deployment:
 
 # Service-specific values
 service:
+  name: papertrl-proxy
   #type: ClusterIP
   port:
     name: http

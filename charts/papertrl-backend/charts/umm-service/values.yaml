@@ -1,6 +1,6 @@
 # Global configurations
 #namespace: testing
-appName: papertrl-user-mm
+appName: papertrl-umm
 replicaCount: 2
 
 # Deployment-specific values
@@ -60,6 +60,7 @@ deployment:
 
 # Service-specific values
 service:
+  name: papertrl-umm
   #type: ClusterIP
   port:
     name: http

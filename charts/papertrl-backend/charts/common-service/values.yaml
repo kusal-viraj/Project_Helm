@@ -60,6 +60,7 @@ deployment:
 
 # Service-specific values
 service:
+  name: papertrl-common
   #type: {{ .Values.global.service.type }}
   port:
     name: http
